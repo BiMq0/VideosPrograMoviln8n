@@ -6,7 +6,7 @@
 
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #8B1538 0%, #A52A2A 100%);
   min-height: 100vh;
   padding: 20px;
 }
@@ -34,6 +34,89 @@ header h1 {
   opacity: 0.9;
 }
 
+/* Main Layout con Sidebar */
+.main-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 30px;
+  padding: 20px;
+}
+
+/* Sidebar - Ranking */
+.sidebar {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+}
+
+.sidebar h2 {
+  color: #8B1538;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.ranking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ranking-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border-left: 4px solid #8B1538;
+  transition: transform 0.2s ease;
+}
+
+.ranking-item:hover {
+  transform: translateX(5px);
+  background: #f0f0f0;
+}
+
+.ranking-item .rank {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #8B1538;
+  min-width: 35px;
+  text-align: center;
+}
+
+.ranking-item .title {
+  flex: 1;
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.ranking-item .likes {
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(135deg, #8B1538 0%, #A52A2A 100%);
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.85rem;
+}
+
+.loading, .no-votes, .error-msg {
+  text-align: center;
+  color: #666;
+  padding: 20px;
+  font-style: italic;
+}
+
+.error-msg {
+  color: #A52A2A;
+}
+
 /* Galería de Cards */
 .gallery {
   display: grid;
@@ -59,7 +142,7 @@ header h1 {
 }
 
 .card-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #8B1538 0%, #A52A2A 100%);
   padding: 20px;
   color: white;
   position: relative;
@@ -109,6 +192,7 @@ header h1 {
   margin-bottom: 15px;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -116,27 +200,30 @@ header h1 {
 .card-footer {
   padding: 0 20px 20px 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
 .view-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #8B1538 0%, #A52A2A 100%);
   color: white;
   border: none;
-  padding: 10px 25px;
+  padding: 12px 30px;
   border-radius: 25px;
   cursor: pointer;
   font-size: 1rem;
-  transition: transform 0.2s ease;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(139, 21, 56, 0.3);
 }
 
 .view-btn:hover {
-  transform: scale(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 21, 56, 0.5);
 }
 
-.video-icon {
-  font-size: 1.5rem;
+.view-btn:active {
+  transform: translateY(0);
 }
 
 /* Card Actions - Votación */
@@ -145,138 +232,67 @@ header h1 {
   background: #f8f9fa;
   border-top: 1px solid #e9ecef;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
-.rating {
+.like-btn {
   display: flex;
-  gap: 5px;
-}
-
-.star {
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  filter: grayscale(100%);
-  opacity: 0.5;
-  transform: scale(1);
-  display: inline-block;
-}
-
-.star:hover {
-  transform: scale(1.15);
-}
-
-.card.voted .star {
-  cursor: not-allowed;
-}
-
-.card.voted .rating {
-  pointer-events: none;
-}
-
-.card.voted .card-actions {
-  background: #e8f5e9;
-}
-
-.vote-count {
-  font-size: 0.9rem;
-  color: #666;
-  font-weight: bold;
-}
-
-/* Modal Styles */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  animation: fadeIn 0.3s ease;
-}
-
-.modal-content {
-  background-color: white;
-  margin: 2% auto;
-  padding: 30px;
-  border-radius: 15px;
-  width: 90%;
-  max-width: 1000px;
-  position: relative;
-  animation: slideIn 0.4s ease;
-}
-
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 35px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-}
-
-#modalTitle {
-  color: #667eea;
-  margin-bottom: 15px;
-  font-size: 2rem;
-}
-
-#modalDescription {
-  color: #555;
-  line-height: 1.8;
-  margin-bottom: 20px;
-  font-size: 1.1rem;
-}
-
-.modal-actions {
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-}
-
-.open-new-tab-btn {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #4A5568 0%, #2D3748 100%);
   color: white;
   border: none;
-  padding: 12px 30px;
+  padding: 10px 20px;
   border-radius: 25px;
   cursor: pointer;
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 600;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3);
+  box-shadow: 0 2px 10px rgba(74, 85, 104, 0.3);
 }
 
-.open-new-tab-btn:hover {
+.like-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(245, 87, 108, 0.4);
+  box-shadow: 0 4px 15px rgba(74, 85, 104, 0.5);
 }
 
-.video-container {
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  height: 0;
-  overflow: hidden;
-  border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+.like-btn:active {
+  transform: translateY(0);
 }
 
-.video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.like-btn.liked {
+  background: linear-gradient(135deg, #8B1538 0%, #A52A2A 100%);
+  cursor: default;
+  box-shadow: 0 2px 10px rgba(139, 21, 56, 0.3);
+}
+
+.like-btn.liked:hover {
+  transform: none;
+  box-shadow: 0 2px 10px rgba(139, 21, 56, 0.3);
+}
+
+.like-icon {
+  font-size: 1.3rem;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.like-btn:hover .like-icon {
+  transform: scale(1.2);
+}
+
+.like-btn.liked .like-icon {
+  animation: likeAnimation 0.6s ease;
+}
+
+@keyframes likeAnimation {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
 }
 
 /* Animations */
@@ -311,35 +327,141 @@ header h1 {
   }
 }
 
-@keyframes slideIn {
-  from {
-    transform: translateY(-50px);
-    opacity: 0;
+/* Responsive */
+
+/* Tablets (768px - 1024px) */
+@media (max-width: 1024px) {
+  .main-layout {
+    grid-template-columns: 250px 1fr;
+    gap: 20px;
   }
-  to {
-    transform: translateY(0);
-    opacity: 1;
+
+  .sidebar {
+    padding: 20px;
+  }
+
+  .sidebar h2 {
+    font-size: 1.3rem;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
 }
 
-/* Responsive */
+/* Móviles (max 768px) */
 @media (max-width: 768px) {
   header h1 {
     font-size: 2rem;
   }
 
-  .gallery {
-    grid-template-columns: 1fr;
-    gap: 20px;
+  .subtitle {
+    font-size: 1rem;
   }
 
-  .modal-content {
-    width: 95%;
-    margin: 10% auto;
+  .main-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 10px;
+  }
+
+  .sidebar {
+    position: static;
+    order: 2;
     padding: 20px;
   }
 
-  #modalTitle {
+  .sidebar h2 {
+    font-size: 1.2rem;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    order: 1;
+    padding: 10px;
+  }
+
+  .card-header {
+    padding: 15px;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+  }
+
+  .card-body {
+    padding: 15px;
+  }
+
+  .card-description {
+    font-size: 0.9rem;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+
+  .view-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .like-btn {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+
+  .ranking-item {
+    padding: 10px;
+  }
+
+  .ranking-item .title {
+    font-size: 0.85rem;
+  }
+
+  .ranking-item .rank {
+    font-size: 1.1rem;
+    min-width: 30px;
+  }
+
+  .ranking-item .likes {
+    font-size: 0.8rem;
+    padding: 3px 10px;
+  }
+}
+
+/* Móviles pequeños (max 480px) */
+@media (max-width: 480px) {
+  header h1 {
     font-size: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  .card-description {
+    font-size: 0.85rem;
+  }
+
+  .view-btn {
+    width: 100%;
+  }
+
+  .like-btn {
+    width: 100%;
+  }
+
+  .ranking-item .title {
+    font-size: 0.8rem;
   }
 }
