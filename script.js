@@ -40,7 +40,7 @@ const videos = [
   ),
   new Video(
     6,
-    "Proyecto 6: Aprendizaje del ingles con realidad aumentada",
+    "Proyecto 6: Aprendizaje del ingles con ML y realidad aumentada",
     "https://univalleedu-my.sharepoint.com/:v:/g/personal/mqb2029675_est_univalle_edu/IQBkkCeS041cS7IVJcEgnjTUAWEfMjgyJmAUEb8rFDiKeyQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=zExqhB"
   ),  
   new Video(
