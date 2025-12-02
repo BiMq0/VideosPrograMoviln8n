@@ -7,7 +7,7 @@ class Video {
 }
 
 const CONFIG = {
-  webhookURL: atob("aHR0cHM6Ly9tYW1hbmlicnlhbjEyNTA1LmFwcC5uOG4uY2xvdWQvd2ViaG9vay83NmFmMTg4My0xODU5LTQxNzgtOWQ0ZC01YTc0MzMzM2IyM2U="),
+  webhookURL: atob("aHR0cHM6Ly9icnlhbm10ZXN0LmFwcC5uOG4uY2xvdWQvd2ViaG9vay9iYmU1NDA5OC1iY2ZmLTQwZjgtYWUxOS0xMGY1N2YxZjlhN2E="),
   storageKey: "proyectos_likes_2025",
 };
 
