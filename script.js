@@ -7,7 +7,7 @@ class Video {
 }
 
 const CONFIG = {
-  webhookURL: atob("aHR0cHM6Ly9icnlhbm10ZXN0LmFwcC5uOG4uY2xvdWQvd2ViaG9vay9iYmU1NDA5OC1iY2ZmLTQwZjgtYWUxOS0xMGY1N2YxZjlhN2E="),
+  webhookURL: "https://bryanmtest.app.n8n.cloud/webhook/bbe54098-bcff-40f8-ae19-10f57f1f9a7a",
   storageKey: "proyectos_likes_2025",
 };
 
